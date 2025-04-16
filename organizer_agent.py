@@ -51,7 +51,19 @@ def organize_files():
         shutil.move(file_path, os.path.join(destination_folder, filename))
         print(f"Moved {filename} to {folder}")
 
+        # Check file type and move accordingly
+        for folder, extensions in FILE_TYPES.items():
+            if filename.lower().endswith(tuple(extensions)):
+                destination_folder = os.path.join(WATCHED_FOLDER, folder)
+                os.makedirs(destination_folder, exist_ok=True)
+                shutil.move(file_path, os.path.join(destination_folder, filename))
+                print(f"Moved {filename} to {folder}")
+                break
+
+# 🔁 Watch folder every 5 seconds
 print("🤖 Agent started. Watching folder...")
 while True:
     organize_files()
-    time.sleep(10)
+    time.sleep(5)  # Check every 5 seconds
+    # You can change this to a longer interval if needed
+    # For example, time.sleep(60) will check every minute
