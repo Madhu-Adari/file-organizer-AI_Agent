@@ -33,8 +33,10 @@ def organize_files():
                 print(f"Moved {filename} to {folder}")
                 break
 
-# 🔁 Watch folder every 10 seconds
+# 🔁 Watch folder every 5 seconds
 print("🤖 Agent started. Watching folder...")
 while True:
     organize_files()
-    time.sleep(10)
+    time.sleep(5)  # Check every 5 seconds
+    # You can change this to a longer interval if needed
+    # For example, time.sleep(60) will check every minute
